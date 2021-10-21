@@ -14,7 +14,7 @@ export function ensureAuthenticated(
 
   if (!authToken) {
     return res.status(401).json({
-      errorCode: "token.invalid",
+      errorCode: "invalid token",
     });
   }
 
@@ -25,6 +25,6 @@ export function ensureAuthenticated(
     req.user_id = sub;
     return next();
   } catch (error) {
-    return res.status(401).json({ errorCode: "token.expired" });
+    return res.status(401).json({ errorCode: "expired token" });
   }
 }

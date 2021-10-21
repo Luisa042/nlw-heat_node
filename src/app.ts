@@ -19,18 +19,16 @@ const io = new Server(httpServer, {
 });
 
 io.on("connection", (socket) => {
-  console.log(`User connected to socket ${socket}`);
+  console.log(`User connected to socket ${socket.id}`);
 });
 
 app.use(express.json());
 
 app.use(router);
 
-const client_id = process.env.GITHUB_CLIENT_ID;
-
 app.get("/github", (req, res) => {
   res.redirect(
-    `https://github.com/login/oauth/authorize?client_id=${client_id}`
+    `https://github.com/login/oauth/authorize?client_id=${process.env.GITHUB_CLIENT_ID}`
   );
 });
 
